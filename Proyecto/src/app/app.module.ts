@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { RegistroPage } from '../pages/registro/registro';
+import { UsuariosProvider } from '../providers/usuarios/usuarios';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCKqw4mrc6BNQcS4T6qgJmP4vJZv_Jiu3M",
@@ -37,7 +38,8 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UsuariosProvider
   ]
 })
 export class AppModule {}

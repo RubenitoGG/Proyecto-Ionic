@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, UrlSerializer } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { UsuariosProvider } from '../../providers/usuarios/usuarios';
+import { Usuario } from '../../models/usuario/usuario.interface';
 
 /**
  * Generated class for the RegistroPage page.
@@ -20,7 +22,12 @@ export class RegistroPage {
   password: string;
   repeat: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  user: Usuario = {
+    name: "",
+    password: ""
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private servicioUsuario: UsuariosProvider) {
     this.username = "";
     this.password = "";
     this.repeat = "";
@@ -74,9 +81,12 @@ export class RegistroPage {
     }
     //#endregion
     else {
+      this.user.name = this.username;
+      this.user.password = this.password;
       // COMPROBAR SI EL USUARIO ESTÁ EN FIREBASE:
 
       // AÑADIR USUARIO:
+      this.servicioUsuario.addUsser(this.user);
 
       // MENSAJE DE USUARIO REGISTRADO Y CAMBIO DE PANTALLA:
       let alert = this.alertCtrl.create({
@@ -85,7 +95,7 @@ export class RegistroPage {
         buttons: [{
           text: 'OK',
           handler: () => {
-            this.navCtrl.push(HomePage);
+            this.navCtrl.setRoot(HomePage);
           }
         }]
       })
