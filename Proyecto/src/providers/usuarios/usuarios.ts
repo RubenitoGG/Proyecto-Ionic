@@ -21,4 +21,9 @@ export class UsuariosProvider {
   addUsser(usuario: Usuario){
     return this.refUsuarios.push(usuario);
   }
+
+  // RECOGER LISTA USUARIOS:
+  getUsserList(){
+    return this.refUsuarios;
+  }
 }
