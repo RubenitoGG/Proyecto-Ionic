@@ -9,6 +9,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { RegistroPage } from '../pages/registro/registro';
 import { UsuariosProvider } from '../providers/usuarios/usuarios';
+import { NotasPage } from '../pages/notas/notas';
+import { FriendsPage } from '../pages/friends/friends';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCKqw4mrc6BNQcS4T6qgJmP4vJZv_Jiu3M",
@@ -22,7 +24,8 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    RegistroPage
+    RegistroPage,
+    NotasPage
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    RegistroPage
+    RegistroPage,
+    NotasPage
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, AlertController, UrlSerializer } f
 import { HomePage } from '../home/home';
 import { UsuariosProvider } from '../../providers/usuarios/usuarios';
 import { Usuario } from '../../models/usuario/usuario.interface';
+import { Observable } from 'rxjs/Observable';
+import { map, delay } from 'rxjs/operators';
 
 /**
  * Generated class for the RegistroPage page.
@@ -27,17 +29,33 @@ export class RegistroPage {
     password: ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private servicioUsuario: UsuariosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public usuarios: UsuariosProvider, private servicioUsuario: UsuariosProvider) {
     this.username = "";
     this.password = "";
     this.repeat = "";
+
+    // EXTRAER LOS DATOS:
+    this.listaUsuarios = this.usuarios
+      .getUsserList() // Devuelve la DB LIST.
+      .snapshotChanges() // Valores.
+      .pipe(map(changes => {
+        return changes.map(
+          c => ({
+            key: c.payload.key,
+            ...c.payload.val(),
+          })
+        )
+      }
+      ))
+
+    this.checkUsser();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroPage');
   }
 
-  registrar() {
+  async registrar() {
     //#region comprobacionTexto
     // COMPROBAR SI LOS CAMPOS ESTÁN CUBIERTOS:
     if (this.username.length == 0 || this.password.length == 0 || this.repeat.length == 0) {
@@ -70,7 +88,7 @@ export class RegistroPage {
       alert.present();
     }
     // COMPROBAR SI LA CONTRASEÑA TIENE MÁS DE 3 LETRAS:
-    else if(this.password.length < 3){
+    else if (this.password.length < 3) {
       let alert = this.alertCtrl.create({
         title: 'Error:',
         subTitle: 'The pass is too short.',
@@ -84,23 +102,57 @@ export class RegistroPage {
       this.user.name = this.username;
       this.user.password = this.password;
       // COMPROBAR SI EL USUARIO ESTÁ EN FIREBASE:
+      this.correcto = true;
+      this.checkUsser()
+      await this.delay(1);
 
-      // AÑADIR USUARIO:
-      this.servicioUsuario.addUsser(this.user);
+      console.log(this.correcto);
 
-      // MENSAJE DE USUARIO REGISTRADO Y CAMBIO DE PANTALLA:
-      let alert = this.alertCtrl.create({
-        title: 'Welcome!',
-        subTitle: 'Usser added successfully.',
-        buttons: [{
-          text: 'OK',
-          handler: () => {
-            this.navCtrl.setRoot(HomePage);
-          }
-        }]
-      })
+      if (this.correcto) {
+        // AÑADIR USUARIO:
+        this.servicioUsuario.addUsser(this.user);
 
-      alert.present();
+        // MENSAJE DE USUARIO REGISTRADO Y CAMBIO DE PANTALLA:
+        let alert = this.alertCtrl.create({
+          title: 'Welcome!',
+          subTitle: 'Usser added successfully.',
+          buttons: [{
+            text: 'OK',
+            handler: () => {
+              this.navCtrl.setRoot(HomePage);
+            }
+          }]
+        })
+
+        alert.present();
+      } else {
+        // MENSAJE DE NOMBRE YA EN USO:
+        let alert = this.alertCtrl.create({
+          title: 'Error:',
+          subTitle: 'Ussername is alredy used.',
+          buttons: ['Dismiss']
+        })
+
+        alert.present();
+      }
+    }
+  }
+
+  listaUsuarios: Observable<Usuario[]>;
+  numeroUsuarios: number;
+  correcto: boolean;
+
+  async delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  checkUsser() {
+    this.listaUsuarios.subscribe(usuarios => { this.numeroUsuarios = usuarios.length });
+    for (let index = 0; index < this.numeroUsuarios; index++) {
+      this.listaUsuarios.forEach(element => { // todos los usuarios.
+        if (this.username == element[index].name)
+          this.correcto = false;
+      });
     }
   }
 }

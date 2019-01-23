@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RegistroPage } from '../registro/registro';
 import { Usuario } from '../../models/usuario/usuario.interface';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { map, delay } from 'rxjs/operators';
 import { UsuariosProvider } from '../../providers/usuarios/usuarios';
+import { NotasPage } from '../notas/notas';
 
 /**
  * Generated class for the HomePage page.
@@ -26,7 +27,7 @@ export class HomePage {
 
   listaUsuarios: Observable<Usuario[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase, public usuarios: UsuariosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase, public usuarios: UsuariosProvider, public alertCtrl: AlertController) {
     // EXTRAER LOS DATOS:
     this.listaUsuarios = this.usuarios
       .getUsserList() // Devuelve la DB LIST.
@@ -41,7 +42,7 @@ export class HomePage {
       }
       ))
 
-      this.checkUsser();
+    this.checkUsser();
   }
 
   ionViewDidLoad() {
@@ -54,7 +55,6 @@ export class HomePage {
 
   numeroUsuarios: number;
   correcto: boolean;
-  o: any;
 
   async goIn() {
     this.correcto = false;
@@ -62,11 +62,24 @@ export class HomePage {
     await this.delay(1);
 
     console.log(this.correcto);
+    if (this.correcto) {
+      this.navCtrl.setRoot(NotasPage)
+      this.navCtrl.popToRoot();
+    } else {
+      // MENSAJE DE ENTRADA INCORRECTA:
+      let alert = this.alertCtrl.create({
+        title: 'Error:',
+        subTitle: 'Usser/Password failed.',
+        buttons: ['Dismiss']
+      })
+
+      alert.present();
+    }
   }
 
   async delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   checkUsser() {
     this.listaUsuarios.subscribe(usuarios => { this.numeroUsuarios = usuarios.length });
@@ -78,5 +91,5 @@ export class HomePage {
     }
   }
 
-  
+
 }
