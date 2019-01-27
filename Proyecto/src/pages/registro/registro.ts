@@ -29,7 +29,7 @@ export class RegistroPage {
     password: ""
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public usuarios: UsuariosProvider, private servicioUsuario: UsuariosProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public usuarios: UsuariosProvider) {
     this.username = "";
     this.password = "";
     this.repeat = "";
@@ -110,7 +110,7 @@ export class RegistroPage {
 
       if (this.correcto) {
         // AÑADIR USUARIO:
-        this.servicioUsuario.addUsser(this.user);
+        this.usuarios.addUsser(this.user);
 
         // MENSAJE DE USUARIO REGISTRADO Y CAMBIO DE PANTALLA:
         let alert = this.alertCtrl.create({

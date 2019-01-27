@@ -11,6 +11,9 @@ import { RegistroPage } from '../pages/registro/registro';
 import { UsuariosProvider } from '../providers/usuarios/usuarios';
 import { NotasPage } from '../pages/notas/notas';
 import { FriendsPage } from '../pages/friends/friends';
+import { NuevaNotaPage } from '../pages/nueva-nota/nueva-nota';
+import { NotasProvider } from '../providers/notas/notas';
+import { ViewNotaPage } from '../pages/view-nota/view-nota';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCKqw4mrc6BNQcS4T6qgJmP4vJZv_Jiu3M",
@@ -25,7 +28,10 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     RegistroPage,
-    NotasPage
+    NotasPage,
+    NuevaNotaPage,
+    FriendsPage,
+    ViewNotaPage
   ],
   imports: [
     BrowserModule,
@@ -37,13 +43,17 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     RegistroPage,
-    NotasPage
+    NotasPage,
+    NuevaNotaPage,
+    FriendsPage,
+    ViewNotaPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsuariosProvider
+    UsuariosProvider,
+    NotasProvider
   ]
 })
 export class AppModule {}

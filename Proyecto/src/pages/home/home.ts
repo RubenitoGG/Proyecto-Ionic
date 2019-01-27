@@ -24,6 +24,10 @@ export class HomePage {
 
   username: string;
   password: string;
+  key: string;
+
+  numeroUsuarios: number;
+  correcto: boolean;
 
   listaUsuarios: Observable<Usuario[]>;
 
@@ -53,18 +57,14 @@ export class HomePage {
     this.navCtrl.push(RegistroPage);
   }
 
-  numeroUsuarios: number;
-  correcto: boolean;
-
   async goIn() {
     this.correcto = false;
     this.checkUsser()
     await this.delay(1);
 
-    console.log(this.correcto);
     if (this.correcto) {
-      this.navCtrl.setRoot(NotasPage)
-      this.navCtrl.popToRoot();
+      // PASAR CLAVE DE USUARIO E INICIAR SESIÓN:
+      this.navCtrl.push(NotasPage, this.key);
     } else {
       // MENSAJE DE ENTRADA INCORRECTA:
       let alert = this.alertCtrl.create({
@@ -85,8 +85,11 @@ export class HomePage {
     this.listaUsuarios.subscribe(usuarios => { this.numeroUsuarios = usuarios.length });
     for (let index = 0; index < this.numeroUsuarios; index++) {
       this.listaUsuarios.forEach(element => { // todos los usuarios.
-        if (this.username == element[index].name && this.password == element[index].password)
+        if (this.username == element[index].name && this.password == element[index].password) {
           this.correcto = true;
+          this.key = element[index].key;
+        }
+
       });
     }
   }
