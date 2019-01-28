@@ -18,14 +18,16 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let nota of notas | async" (click)="editNote(nota)">
-      <h1>
-        <b>{{nota.title}}</b>
-      </h1>
-      <h3>
-        {{nota.subtitle}}
-      </h3>
+    <div *ngFor="let nota of notas | async">
+    <ion-item *ngIf="nota.userKey == this.key" (click)="editNote(nota)">
+        <h1>
+          <b>{{nota.title}}</b>
+        </h1>
+        <h3>
+          {{nota.subtitle}}
+        </h3>
     </ion-item>
+  </div>
   </ion-list>
   <button (click)="newNote()" ion-button block color="light">
     <ion-icon name="add-circle"></ion-icon>

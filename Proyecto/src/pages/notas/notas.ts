@@ -24,10 +24,10 @@ export class NotasPage {
   key: any;
 
   paramsPass = {
-    key : this.key
+    key: this.key
   };
 
-  notas : Observable<Nota[]>;
+  notas: Observable<Nota[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public notasPrv: NotasProvider) {
     // Recibir la clave del usuario:
@@ -38,7 +38,7 @@ export class NotasPage {
     this.notas = this.notasPrv
       .getNotas()
       .snapshotChanges()
-      .pipe(map(changes =>{
+      .pipe(map(changes => {
         return changes.map(
           c => ({
             key: c.payload.key,
@@ -53,7 +53,7 @@ export class NotasPage {
     this.navCtrl.push(NuevaNotaPage, this.paramsPass);
   }
 
-  editNote(nota: Nota){
+  editNote(nota: Nota) {
     this.navCtrl.push(ViewNotaPage, nota.key);
   }
 }
