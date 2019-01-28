@@ -32,6 +32,9 @@ export class HomePage {
   listaUsuarios: Observable<Usuario[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase, public usuarios: UsuariosProvider, public alertCtrl: AlertController) {
+    this.username = "";
+    this.password = "";
+    
     // EXTRAER LOS DATOS:
     this.listaUsuarios = this.usuarios
       .getUsserList() // Devuelve la DB LIST.

@@ -3,12 +3,12 @@
   <ion-navbar hideBackButton color="primary" text-center>
     <ion-title>MyNotes</ion-title>
     <ion-buttons left>
-      <button ion-button>
+      <button ion-button (click)="editUser()">
         <ion-icon name="cog"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons right>
-      <button ion-button>
+      <button ion-button (click)='goFriends()'>
         <ion-icon name="contacts"></ion-icon>
       </button>
     </ion-buttons>

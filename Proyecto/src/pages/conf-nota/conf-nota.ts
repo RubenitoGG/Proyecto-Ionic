@@ -93,26 +93,4 @@ export class ConfNotaPage {
     this.notas.updateNotas(this.nota);
     this.navCtrl.push(ViewNotaPage, this.nota.key);
   }
-
-  deleteNote(){
-    // ALERTA DE BORRAR NOTA:
-    let alert = this.alertCtrl.create({
-      title: 'Warning!',
-      message: 'You will delete the note forever!!!',
-      buttons: [
-        {
-          text: 'Delete',
-          handler: (blah) => {
-            // BORRAR NOTA:
-            this.navCtrl.push(NotasPage, this.nota.userKey);
-            this.notas.deleteNota(this.nota);
-          }
-        }, {
-          text: 'Cancel'
-        }
-      ]
-    });
-
-    alert.present();
-  }
 }

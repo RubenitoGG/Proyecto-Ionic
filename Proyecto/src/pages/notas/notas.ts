@@ -6,6 +6,8 @@ import { Nota } from '../../models/nota/nota.interface';
 import { NotasProvider } from '../../providers/notas/notas';
 import { map } from 'rxjs/operators';
 import { ViewNotaPage } from '../view-nota/view-nota';
+import { ConfUserPage } from '../conf-user/conf-user';
+import { FriendsPage } from '../friends/friends';
 
 /**
  * Generated class for the NotasPage page.
@@ -32,7 +34,6 @@ export class NotasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public notasPrv: NotasProvider) {
     // Recibir la clave del usuario:
     this.key = navParams.data;
-    console.log(this.key);
 
     // RECOGEMOS TODAS LAS NOTAS:
     this.notas = this.notasPrv
@@ -55,5 +56,13 @@ export class NotasPage {
 
   editNote(nota: Nota) {
     this.navCtrl.push(ViewNotaPage, nota.key);
+  }
+
+  editUser() {
+    this.navCtrl.push(ConfUserPage, this.key);
+  }
+
+  goFriends() {
+    this.navCtrl.push(FriendsPage);
   }
 }

@@ -26,4 +26,9 @@ export class UsuariosProvider {
   getUsserList(){
     return this.refUsuarios;
   }
+
+  // ACTUALIZAR USUARIO:
+  updateNotas(usuario: Usuario) {
+    return this.refUsuarios.update(usuario.key, usuario);
+  }
 }

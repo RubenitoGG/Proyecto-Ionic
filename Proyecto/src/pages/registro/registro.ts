@@ -26,7 +26,8 @@ export class RegistroPage {
 
   user: Usuario = {
     name: "",
-    password: ""
+    password: "",
+    sentence: ""
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, public usuarios: UsuariosProvider) {

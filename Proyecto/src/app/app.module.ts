@@ -16,6 +16,7 @@ import { NuevaNotaPage } from '../pages/nueva-nota/nueva-nota';
 import { NotasProvider } from '../providers/notas/notas';
 import { ViewNotaPage } from '../pages/view-nota/view-nota';
 import { EditNotaPage } from '../pages/edit-nota/edit-nota';
+import { ConfUserPage } from '../pages/conf-user/conf-user';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCKqw4mrc6BNQcS4T6qgJmP4vJZv_Jiu3M",
@@ -35,7 +36,8 @@ export const firebaseConfig = {
     FriendsPage,
     ViewNotaPage,
     EditNotaPage,
-    ConfNotaPage
+    ConfNotaPage,
+    ConfUserPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ export const firebaseConfig = {
     FriendsPage,
     ViewNotaPage,
     EditNotaPage,
-    ConfNotaPage
+    ConfNotaPage,
+    ConfUserPage
   ],
   providers: [
     StatusBar,
