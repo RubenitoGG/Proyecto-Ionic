@@ -12,16 +12,24 @@ import { Nota } from '../../models/nota/nota.interface';
 @Injectable()
 export class NotasProvider {
 
-private refNotas =this.db.list<Nota>('notas');
+  private refNotas = this.db.list<Nota>('notas');
 
   constructor(private db: AngularFireDatabase) {
   }
 
-  addNote(nota:Nota){
+  addNote(nota: Nota) {
     return this.refNotas.push(nota);
   }
- 
-  getNotas(){
+
+  getNotas() {
     return this.refNotas;
+  }
+
+  updateNotas(nota: Nota) {
+    return this.refNotas.update(nota.key, nota);
+  }
+
+  deleteNota(nota: Nota){
+    return this.refNotas.remove(nota.key);
   }
 }

@@ -14,7 +14,7 @@
         </button>
       </ion-buttons>
       <ion-buttons right>
-        <button ion-button>
+        <button (click)='confNote()' ion-button>
           <ion-icon name="cog"></ion-icon>
         </button>
       </ion-buttons>
@@ -28,7 +28,7 @@
     </h1>
       <ion-input value={{subtitulo}} readonly text-center></ion-input>
       <ion-textarea color="danger" value={{contenido}} readonly text-wrap></ion-textarea>
-      <button block ion-button>
+      <button block ion-button (click)="editNote()">
         Edit
       </button>
   </ion-content>

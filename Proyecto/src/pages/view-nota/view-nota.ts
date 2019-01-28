@@ -1,3 +1,5 @@
+import { ConfNotaPage } from './../conf-nota/conf-nota';
+import { EditNotaPage } from './../edit-nota/edit-nota';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NotasPage } from '../notas/notas';
@@ -62,9 +64,16 @@ export class ViewNotaPage {
           this.contenido = element[index].content;
           this.userKey = element[index].userKey;
         }
-
       });
     }
+  }
+
+  confNote(){
+    this.navCtrl.push(ConfNotaPage, this.key);
+  }
+
+  editNote(){
+    this.navCtrl.push(EditNotaPage, this.key);
   }
 
   backMenu() {

@@ -1,3 +1,4 @@
+import { ConfNotaPage } from './../pages/conf-nota/conf-nota';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -14,6 +15,7 @@ import { FriendsPage } from '../pages/friends/friends';
 import { NuevaNotaPage } from '../pages/nueva-nota/nueva-nota';
 import { NotasProvider } from '../providers/notas/notas';
 import { ViewNotaPage } from '../pages/view-nota/view-nota';
+import { EditNotaPage } from '../pages/edit-nota/edit-nota';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCKqw4mrc6BNQcS4T6qgJmP4vJZv_Jiu3M",
@@ -31,7 +33,9 @@ export const firebaseConfig = {
     NotasPage,
     NuevaNotaPage,
     FriendsPage,
-    ViewNotaPage
+    ViewNotaPage,
+    EditNotaPage,
+    ConfNotaPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ export const firebaseConfig = {
     NotasPage,
     NuevaNotaPage,
     FriendsPage,
-    ViewNotaPage
+    ViewNotaPage,
+    EditNotaPage,
+    ConfNotaPage
   ],
   providers: [
     StatusBar,

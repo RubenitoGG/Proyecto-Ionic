@@ -32,6 +32,7 @@ export class NotasPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public notasPrv: NotasProvider) {
     // Recibir la clave del usuario:
     this.key = navParams.data;
+    console.log(this.key);
 
     // RECOGEMOS TODAS LAS NOTAS:
     this.notas = this.notasPrv
