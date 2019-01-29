@@ -1,3 +1,5 @@
+import { ViewFriendNotaPage } from './../pages/view-friend-nota/view-friend-nota';
+import { FriendNotaPage } from './../pages/friend-nota/friend-nota';
 import { ConfNotaPage } from './../pages/conf-nota/conf-nota';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -37,7 +39,9 @@ export const firebaseConfig = {
     ViewNotaPage,
     EditNotaPage,
     ConfNotaPage,
-    ConfUserPage
+    ConfUserPage,
+    FriendNotaPage,
+    ViewFriendNotaPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,9 @@ export const firebaseConfig = {
     ViewNotaPage,
     EditNotaPage,
     ConfNotaPage,
-    ConfUserPage
+    ConfUserPage,
+    FriendNotaPage,
+    ViewFriendNotaPage
   ],
   providers: [
     StatusBar,

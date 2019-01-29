@@ -1,3 +1,8 @@
+import { FriendNotaPage } from './../friend-nota/friend-nota';
+import { map } from 'rxjs/operators';
+import { UsuariosProvider } from './../../providers/usuarios/usuarios';
+import { Usuario } from './../../models/usuario/usuario.interface';
+import { Observable } from 'rxjs';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,11 +20,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FriendsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  listaUsuarios: Observable<Usuario[]>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public usuarios: UsuariosProvider) {
+    // EXTRAER TODOS LOS USUARIOS:
+    this.listaUsuarios = this.usuarios
+      .getUsserList() // Devuelve la DB LIST.
+      .snapshotChanges() // Valores.
+      .pipe(map(changes => {
+        return changes.map(
+          c => ({
+            key: c.payload.key,
+            ...c.payload.val(),
+          })
+        )
+      }
+      ))
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FriendsPage');
+  paramsPass ={
+    key: "",
+    username : ""
+  }
+
+  goFriend(usuario: Usuario){
+    this.paramsPass.key = usuario.key;
+    this.paramsPass.username = usuario.name;
+    this.navCtrl.push(FriendNotaPage, this.paramsPass)
   }
 
 }

@@ -24,7 +24,6 @@ import { FriendsPage } from '../friends/friends';
 export class NotasPage {
 
   key: any;
-
   paramsPass = {
     key: this.key
   };
