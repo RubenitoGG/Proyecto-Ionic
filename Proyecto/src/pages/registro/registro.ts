@@ -52,10 +52,6 @@ export class RegistroPage {
     this.checkUsser();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistroPage');
-  }
-
   async registrar() {
     //#region comprobacionTexto
     // COMPROBAR SI LOS CAMPOS ESTÁN CUBIERTOS:
@@ -106,8 +102,6 @@ export class RegistroPage {
       this.correcto = true;
       this.checkUsser()
       await this.delay(1);
-
-      console.log(this.correcto);
 
       if (this.correcto) {
         // AÑADIR USUARIO:

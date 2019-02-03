@@ -99,7 +99,6 @@ export class EditNotaPage {
   save() {
     // GUARDAR 'CONTENT':
     this.nota.content = this.contenido;
-    console.log(this.nota);
     // ACTUALIZAR NOTA:
     this.notas.updateNotas(this.nota);
     // SALIR:

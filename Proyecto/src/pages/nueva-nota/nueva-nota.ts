@@ -38,10 +38,6 @@ export class NuevaNotaPage {
     this.subtitle = "";
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NuevaNotaPage');
-  }
-
   create() {
     // COMPROBAR SI LOS CAMPOS ESTÁN CUBIERTOS:
     if (this.title.length == 0 || this.subtitle.length == 0 || this.type == null) {

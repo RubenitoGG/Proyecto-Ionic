@@ -35,7 +35,6 @@ export class ViewNotaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public database: AngularFireDatabase, public notas: NotasProvider) {
     this.key = navParams.data;
-    console.log(this.key);
     // COGER TODAS LAS NOTAS:
     this.listaNotas = this.notas
       .getNotas()

@@ -52,10 +52,6 @@ export class HomePage {
     this.checkUsser();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-
   goRegistro() {
     this.navCtrl.push(RegistroPage);
   }

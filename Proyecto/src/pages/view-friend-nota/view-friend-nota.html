@@ -6,17 +6,18 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>view-friend-nota</ion-title>
+  <ion-navbar color='primary'>
+    <ion-title>MyPeople</ion-title>
   </ion-navbar>
+
 
 </ion-header>
 
 
 <ion-content padding>
   <h1>
-    <ion-input value={{titulo}} readonly text-center></ion-input>
+    <ion-input value={{nota.title}} readonly text-center></ion-input>
   </h1>
-    <ion-input value={{subtitulo}} readonly text-center></ion-input>
-    <ion-textarea color="danger" value={{contenido}} readonly text-wrap></ion-textarea>
+    <ion-input value={{nota.subtitle}} readonly text-center></ion-input>
+    <ion-textarea value={{nota.content}} readonly text-wrap></ion-textarea>
 </ion-content>

@@ -15,11 +15,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ViewFriendNotaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  nota: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewFriendNotaPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.nota = navParams.data;
   }
 
 }
