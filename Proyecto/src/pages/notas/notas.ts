@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, Note } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NuevaNotaPage } from '../nueva-nota/nueva-nota';
 import { Observable } from 'rxjs';
 import { Nota } from '../../models/nota/nota.interface';
@@ -30,7 +30,7 @@ export class NotasPage {
 
   notas: Observable<Nota[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menu: MenuController, public notasPrv: NotasProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public notasPrv: NotasProvider) {
     // Recibir la clave del usuario:
     this.key = navParams.data;
 
